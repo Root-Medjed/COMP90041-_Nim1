@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "Test One",
+      "setup": "javac *.java",
+      "run": "java Nimsys",
+      "input": "start\r\nLuke\r\nNick\r\n4\r\n20\r\n5\r\n4\r\n3\r\n2\r\n4\r\n3\r\n2\r\n1\r\n1\r\nY\r\n10\r\n30\r\n6\r\n4\r\n4\r\n10\r\n4\r\n2\r\nN\r\nexit\r\n",
+      "output": "Welcome to Nim\r\n\r\nPlease enter a command to continue\r\n\r\n$ \r\nPlease enter Player 1's name : Please enter Player 2's name : Enter upper bound : Enter initial number of stones : \r\n20 stones left : * * * * * * * * * * * * * * * * * * * *\r\nLuke's turn. Enter stones to remove : Upper bound limit exceed, upper bound maximum choice is 4\r\n\r\nLuke's turn. Enter stones to remove : \r\n16 stones left : * * * * * * * * * * * * * * * *\r\nNick's turn. Enter stones to remove : \r\n13 stones left : * * * * * * * * * * * * *\r\nLuke's turn. Enter stones to remove : \r\n11 stones left : * * * * * * * * * * *\r\nNick's turn. Enter stones to remove : \r\n7 stones left : * * * * * * *\r\nLuke's turn. Enter stones to remove : \r\n4 stones left : * * * *\r\nNick's turn. Enter stones to remove : \r\n2 stones left : * *\r\nLuke's turn. Enter stones to remove : \r\n1 stones left : *\r\nNick's turn. Enter stones to remove : \r\nGame Over\r\nLuke wins!\r\n\r\nDo you want to play again (Y/N): Enter upper bound : Enter initial number of stones : \r\n30 stones left : * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\r\nLuke's turn. Enter stones to remove : \r\n24 stones left : * * * * * * * * * * * * * * * * * * * * * * * *\r\nNick's turn. Enter stones to remove : \r\n20 stones left : * * * * * * * * * * * * * * * * * * * *\r\nLuke's turn. Enter stones to remove : \r\n16 stones left : * * * * * * * * * * * * * * * *\r\nNick's turn. Enter stones to remove : \r\n6 stones left : * * * * * *\r\nLuke's turn. Enter stones to remove : \r\n2 stones left : * *\r\nNick's turn. Enter stones to remove : \r\nGame Over\r\nLuke wins!\r\n\r\nDo you want to play again (Y/N): Luke won 2 games out of 2 played\r\nNick won 0 game out of 2 played\r\n$ \r\nThank you for playing Nim\r\n",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "Test Two",
+      "setup": "javac *.java",
+      "run": "java Nimsys",
+      "input": "help\r\ncommands\r\nstart\r\nTaylor\r\nMark\r\n4\r\n10\r\n3\r\n3\r\n3\r\n1\r\nN\r\nstart\r\nTaylor\r\nMike\r\n2\r\n5\r\n2\r\n1\r\n2\r\nN\r\nexit\r\n",
+      "output": "Welcome to Nim\r\n\r\nPlease enter a command to continue\r\n\r\n$ Type 'commands' to list all available commands\r\nType 'start' to play game\r\nPlayer to remove the last stone loses!\r\n\r\n$ \r\n: start\r\n: exit\r\n: help\r\n: commands\r\n\r\n$ \r\nPlease enter Player 1's name : Please enter Player 2's name : Enter upper bound : Enter initial number of stones : \r\n10 stones left : * * * * * * * * * *\r\nTaylor's turn. Enter stones to remove : \r\n7 stones left : * * * * * * *\r\nMark's turn. Enter stones to remove : \r\n4 stones left : * * * *\r\nTaylor's turn. Enter stones to remove : \r\n1 stones left : *\r\nMark's turn. Enter stones to remove : \r\nGame Over\r\nTaylor wins!\r\n\r\nDo you want to play again (Y/N): Taylor won 1 game out of 1 played\r\nMark won 0 game out of 1 played\r\n$ \r\nPlease enter Player 1's name : Please enter Player 2's name : Enter upper bound : Enter initial number of stones : \r\n5 stones left : * * * * *\r\nTaylor's turn. Enter stones to remove : \r\n3 stones left : * * *\r\nMike's turn. Enter stones to remove : \r\n2 stones left : * *\r\nTaylor's turn. Enter stones to remove : \r\nGame Over\r\nMike wins!\r\n\r\nDo you want to play again (Y/N): Taylor won 0 game out of 1 played\r\nMike won 1 game out of 1 played\r\n$ \r\nThank you for playing Nim\r\n",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    }
+  ]
+}
