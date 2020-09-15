@@ -69,7 +69,7 @@ public class Nimsys {
             int upperBound = input.nextInt();
             System.out.print("Enter initial number of stones : ");
             int totalStones = input.nextInt();
-            currentPlayer = player_1;//object to handle who's turn，initialize to player_1
+            currentPlayer = player_1;//object to handle turns initialize to player_1
 
             do {
 
