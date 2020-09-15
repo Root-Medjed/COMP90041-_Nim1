@@ -30,7 +30,7 @@ public class Nimsys {
                 case "exit":
                     gameObj.exit();
                 default:
-                    command = input.nextLine();
+                    command = input.next();
                     break;
             }
         }while(!command.equals(""));
