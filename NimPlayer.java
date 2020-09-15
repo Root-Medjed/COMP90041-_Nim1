@@ -5,11 +5,12 @@ public class NimPlayer {
     private Integer gamesCount; //how many games played;
     private Integer s;
 
-    public NimPlayer(String name, int wins, int gamesCount, int stones){ //constructor & other
+    public NimPlayer(String name, int wins, int gamesCount, int stones, int s){ //constructor & other
         this.name = name;
         this.stones = stones;
         this.wins = wins;
         this.gamesCount = gamesCount;
+        this.s = s;
     }
 
     //public NimPlayer()
@@ -58,7 +59,9 @@ public class NimPlayer {
         this.s = s;
     }
 
-    public int getTotalStones(){ //get total number of stones left
+    public int getTotalStones() //get total number of stones left
+    {
         return s;
     }
+    
 }
