@@ -39,10 +39,10 @@ public class Nimsys {
 
     private void startGame(){
 
-        NimPlayer player_1 = new NimPlayer(null,0,0,0);
-        NimPlayer player_2 = new NimPlayer(null,0,0,0);
+        NimPlayer player_1 = new NimPlayer(null,0,0,0,0);
+        NimPlayer player_2 = new NimPlayer(null,0,0,0,0);
 
-        String p1, p2;
+        String p1 = null, p2 = null;
 
         do {
             System.out.print("Please enter Player 1's name : ");
@@ -60,7 +60,7 @@ public class Nimsys {
     }
 
     private void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new game.
-        NimPlayer currentPlayer;
+        NimPlayer currentPlayer = null;
 
         do {
             //String star = "* ";
