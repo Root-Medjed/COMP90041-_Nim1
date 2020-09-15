@@ -58,7 +58,7 @@ public class Nimsys {
             p2 = input.nextLine();
             player_2.setName(p2);//player_2 enter name;
 
-            gameObj.newtGame(player_1, player_2); //done
+            gameObj.newtGame(player_1, player_2, p1, p2); //done
             break;
         }while(!command.equals("N"));
     }
@@ -137,7 +137,7 @@ public class Nimsys {
         String playOrNot = input.nextLine().toUpperCase();
 
         if (playOrNot.toUpperCase().equals("Y")) {
-            gameObj.newtGame(player_1, player_2);
+            gameObj.newtGame(player_1, player_2, p1, p2);
         } else if (playOrNot.toUpperCase().equals("N")) {
 
             System.out.println("\n" + player_1.getName() + " won " + player_1.getWins() +" games out of " +
