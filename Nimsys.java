@@ -103,8 +103,8 @@ public void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new ga
             } while (totalStones > 0);
 
             p.setNumOfGames(1);
+            
             System.out.println("Game Over"); //round ends
-
             if (turnRound % 2 != 0) {
                 currentPlayer = player_2;
             } else {
