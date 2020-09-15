@@ -58,7 +58,7 @@ public class NimPlayer {
         this.s = s;
     }
 
-    public int getTotalStones() //get total number of stones left
-    {
+    public int getTotalStones(){ //get total number of stones left
         return s;
     }
+}
