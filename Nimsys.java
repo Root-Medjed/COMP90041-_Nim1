@@ -17,27 +17,27 @@ public class Nimsys {
         command = input.nextLine().toLowerCase();
         
         while (gameObj.isRunning){
-            System.out.println(" ");
+            
+            System.out.print("$ ");
+            command = input.nextLine().toLowerCase();
 
-            switch (command) {
-                case "start":
-                    gameObj.startGame();
-                    break;
-                case "help":
-                    gameObj.help();
-                    break;
-                case "commands":
-                    gameObj.commandList();
-                    break;
-                case "exit":
-                    gameObj.exit();
-                default:
-                    /*command = input.nextLine();*/
-                    break;
+            if ("start".equals(command)) {
+                gameObj.startGame();
             }
-        }
+            else if ("help".equals(command)) {
+                gameObj.help();
+            }
+            else if ("commands".equals(command)) {
+                gameObj.commandList();
+            }
+            else if ("exit".equals(command)) {
+                gameObj.exit();
+            }
+            else{
+                System.out.println("$ ");
+            }
 
-        return;
+        } //end of while loop
 
     }
 
@@ -63,7 +63,7 @@ public class Nimsys {
         }while(!command.equals("N"));
     }
 
-    private void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new game.
+    private void newtGame(NimPlayer player_1, NimPlayer player_2, String p1, String p2) {  //Start a new game.
         NimPlayer currentPlayer = null;
 
         do {
@@ -113,16 +113,21 @@ public class Nimsys {
 
 
             System.out.println("\nGame Over"); //round ends
-
-
+            
+            player_1.setNumOfGames(1);
+            player_2.setNumOfGames(1);
+            
+            String win;
+            
             if (turnRound % 2 == 0) {
-                currentPlayer = player_2;
+                win = p2;
+                player_2.setNumOfWins(1);
             }
+            
             else {
-                currentPlayer = player_1;
-            }
-            currentPlayer.setNumOfWins(1);
-            currentPlayer.setNumOfGames(1);
+                win = p1;
+                player_1.setNumOfWins(1);
+            }    
 
             System.out.println(currentPlayer.getName() + " wins!\n");
 
