@@ -30,7 +30,7 @@ public class Nimsys {
                 case "exit":
                     gameObj.exit();
                 default:
-                    command = input.next();
+                    command = input.nextLine();
                     break;
             }
         }while(!command.equals(""));
@@ -138,7 +138,7 @@ public class Nimsys {
 
             System.out.println("$ ");
             System.out.print("$ ");
-            command = input.next();
+            command = input.nextLine();
         }
     }//end of new game
 
@@ -148,14 +148,14 @@ public class Nimsys {
         System.out.println("Type start to play game");
         System.out.println("Player to remove the last stone loses!");
         System.out.print("\n$ ");
-        command = input.next();
+        command = input.nextLine();
     }
 
     private void commandList(){ //command list method
 
         System.out.println("\n: start\n" + ": exit\n" + ": help\n" + ": commands");
         System.out.print("\n$ ");
-        command = input.next();
+        command = input.nextLine();
 
     }
 
