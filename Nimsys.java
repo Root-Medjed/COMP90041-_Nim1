@@ -54,7 +54,7 @@ public class Nimsys {
             p1 = input.nextLine();
             player_1.setName(p1);//player_1 enter name;
 
-            System.out.print("Please enter Player 2's name : ");
+            System.out.print("\nPlease enter Player 2's name : ");
             p2 = input.nextLine();
             player_2.setName(p2);//player_2 enter name;
 
@@ -69,9 +69,9 @@ public class Nimsys {
         do {
             //String star = "* ";
 
-            System.out.print("Enter upper bound : ");
+            System.out.print("\nEnter upper bound : ");
             int upperBound = input.nextInt();
-            System.out.print("Enter initial number of stones : ");
+            System.out.print("\nEnter initial number of stones : ");
             int totalStones = input.nextInt();
             currentPlayer = player_1;//object to handle turns initialize to player_1
             currentPlayer.setTotalStone(totalStones);
@@ -135,7 +135,7 @@ public class Nimsys {
             gameObj.newtGame(player_1, player_2);
         } else if (playOrNot.toUpperCase().equals("N")) {
 
-            System.out.println(player_1.getName() + " won " + player_1.getWins() +" games out of " +
+            System.out.println("\n" + player_1.getName() + " won " + player_1.getWins() +" games out of " +
                     currentPlayer.getGamesCount() + " played");
             System.out.println(player_2.getName() + " won " + player_2.getWins() +" games out of " +
                     currentPlayer.getGamesCount() + " played");
@@ -157,14 +157,14 @@ public class Nimsys {
 
     private void commandList(){ //command list method
 
-        System.out.println("\n: start\n" + ": exit\n" + ": help\n" + ": commands");
+        System.out.println("\n: start\r\n" + ": exit\r\n" + ": help\r\n" + ": commands");
         System.out.print("\n$ ");
         command = input.nextLine();
 
     }
 
     private void exit(){ //command list method
-        System.out.println("Thank you for playing Nim");
+        System.out.println("\nThank you for playing Nim");
         isRunning = false;
       
     }
