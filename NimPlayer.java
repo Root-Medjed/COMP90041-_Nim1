@@ -1,11 +1,8 @@
-import java.security.PublicKey;
-
 public class NimPlayer {
     private String name;
     private Integer stones; //the number of stones the player wants to remove in his/her turn.
     private Integer wins; //how many wins;
     private Integer gamesCount; //how many games played;
-    private Integer s;
 
     public NimPlayer(String name, int wins, int gamesCount, int stones){ //constructor & other
         this.name = name;
@@ -14,8 +11,11 @@ public class NimPlayer {
         this.gamesCount = gamesCount;
     }
 
-    //public NimPlayer()
-
+    //public NimPlayer(){
+        //this.name = null;
+        //this.stones = 0;
+        //this.wins = 0;
+    //}
 
     public void setName(String name){
 
@@ -55,15 +55,5 @@ public class NimPlayer {
 
         this.gamesCount += gamesCount;
     }
-
-    public void setTotalStone(int s){ //set total number of stones left
-        this.s = s;
-    }
-
-    public int getTotalStones() //get total number of stones left
-    {
-        return s;
-    }
-
 
 }

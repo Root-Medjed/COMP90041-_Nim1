@@ -6,6 +6,8 @@ public class Nimsys {
     public static Nimsys gameObj = new Nimsys();//create main game object
     public static int turnRound = 1; // count rounds played
     private static String command = null; //take input into command line
+    
+    private boolean isRunning = true;
 
     public static void main(String[] args) {  //this is the main method contains commands line console input
 
@@ -13,36 +15,38 @@ public class Nimsys {
         System.out.println("\nPlease enter a command to continue ");
         System.out.print("\n$ ");
         command = input.nextLine().toLowerCase();
+        
+        while (gameObj.isRunning){
+            
+            System.out.print("$ ");
+            command = input.nextLine().toLowerCase();
 
-        do{
-            System.out.println(" ");
-
-            switch (command) {
-                case "start":
-                    gameObj.startGame();
-                    break;
-                case "help":
-                    gameObj.help();
-                    break;
-                case "commands":
-                    gameObj.commandList();
-                    break;
-                case "exit":
-                    gameObj.exit();
-                default:
-                    command = input.next();
-                    break;
+            if ("start".equals(command)) {
+                gameObj.startGame();
             }
-        }while(!command.equals(""));
+            else if ("help".equals(command)) {
+                gameObj.help();
+            }
+            else if ("commands".equals(command)) {
+                gameObj.commandList();
+            }
+            else if ("exit".equals(command)) {
+                gameObj.exit();
+            }
+            else{
+                System.out.println("$ ");
+            }
+
+        } //end of while loop
 
     }
 
     private void startGame(){
 
-        NimPlayer player_1 = new NimPlayer(null,0,0,0);
-        NimPlayer player_2 = new NimPlayer(null,0,0,0);
+        NimPlayer player_1 = new NimPlayer(null,0,0,0,0);
+        NimPlayer player_2 = new NimPlayer(null,0,0,0,0);
 
-        String p1, p2;
+        String p1 = null, p2 = null;
 
         do {
             System.out.print("Please enter Player 1's name : ");
@@ -50,24 +54,24 @@ public class Nimsys {
             p1 = input.nextLine();
             player_1.setName(p1);//player_1 enter name;
 
-            System.out.print("Please enter Player 2's name : ");
+            System.out.print("\nPlease enter Player 2's name : ");
             p2 = input.nextLine();
             player_2.setName(p2);//player_2 enter name;
 
-            gameObj.newtGame(player_1, player_2); //done
+            gameObj.newtGame(player_1, player_2, p1, p2); //done
             break;
         }while(!command.equals("N"));
     }
 
-    private void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new game.
-        NimPlayer currentPlayer;
+    private void newtGame(NimPlayer player_1, NimPlayer player_2, String p1, String p2) {  //Start a new game.
+        NimPlayer currentPlayer = null;
 
         do {
             //String star = "* ";
 
-            System.out.print("Enter upper bound : ");
+            System.out.print("\nEnter upper bound : ");
             int upperBound = input.nextInt();
-            System.out.print("Enter initial number of stones : ");
+            System.out.print("\nEnter initial number of stones : ");
             int totalStones = input.nextInt();
             currentPlayer = player_1;//object to handle turns initialize to player_1
             currentPlayer.setTotalStone(totalStones);
@@ -109,16 +113,21 @@ public class Nimsys {
 
 
             System.out.println("\nGame Over"); //round ends
-
-
+            
+            player_1.setNumOfGames(1);
+            player_2.setNumOfGames(1);
+            
+            String win;
+            
             if (turnRound % 2 == 0) {
-                currentPlayer = player_2;
+                win = p2;
+                player_2.setNumOfWins(1);
             }
+            
             else {
-                currentPlayer = player_1;
-            }
-            currentPlayer.setNumOfWins(1);
-            currentPlayer.setNumOfGames(1);
+                win = p1;
+                player_1.setNumOfWins(1);
+            }    
 
             System.out.println(currentPlayer.getName() + " wins!\n");
 
@@ -128,17 +137,17 @@ public class Nimsys {
         String playOrNot = input.nextLine().toUpperCase();
 
         if (playOrNot.toUpperCase().equals("Y")) {
-            gameObj.newtGame(player_1, player_2);
+            gameObj.newtGame(player_1, player_2, p1, p2);
         } else if (playOrNot.toUpperCase().equals("N")) {
 
-            System.out.println(player_1.getName() + " won " + player_1.getWins() +" games out of " +
+            System.out.println("\n" + player_1.getName() + " won " + player_1.getWins() +" games out of " +
                     currentPlayer.getGamesCount() + " played");
             System.out.println(player_2.getName() + " won " + player_2.getWins() +" games out of " +
                     currentPlayer.getGamesCount() + " played");
 
             System.out.println("$ ");
             System.out.print("$ ");
-            command = input.next();
+            command = input.nextLine();
         }
     }//end of new game
 
@@ -148,19 +157,20 @@ public class Nimsys {
         System.out.println("Type start to play game");
         System.out.println("Player to remove the last stone loses!");
         System.out.print("\n$ ");
-        command = input.next();
+        command = input.nextLine();
     }
 
     private void commandList(){ //command list method
 
-        System.out.println("\n: start\n" + ": exit\n" + ": help\n" + ": commands");
+        System.out.println("\n: start\r\n" + ": exit\r\n" + ": help\r\n" + ": commands");
         System.out.print("\n$ ");
-        command = input.next();
+        command = input.nextLine();
 
     }
 
     private void exit(){ //command list method
-        System.out.println("Thank you for playing Nim");
+        System.out.println("\nThank you for playing Nim");
+        isRunning = false;
       
     }
 
@@ -169,7 +179,5 @@ public class Nimsys {
             System.out.print("* ");
         }
     }
-
-
 
 } //end of Nimsys class
