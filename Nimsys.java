@@ -170,6 +170,4 @@ public class Nimsys {
         }
     }
 
-
-
 } //end of Nimsys class
