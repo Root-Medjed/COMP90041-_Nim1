@@ -6,6 +6,8 @@ public class Nimsys {
     public static Nimsys gameObj = new Nimsys();//create main game object
     public static int turnRound = 1; // count rounds played
     private static String command = null; //take input into command line
+    
+    private boolean isRunning = true;
 
     public static void main(String[] args) {  //this is the main method contains commands line console input
 
@@ -13,8 +15,8 @@ public class Nimsys {
         System.out.println("\nPlease enter a command to continue ");
         System.out.print("\n$ ");
         command = input.nextLine().toLowerCase();
-
-        do{
+        
+        while (gameObj.isRunning){
             System.out.println(" ");
 
             switch (command) {
@@ -30,11 +32,11 @@ public class Nimsys {
                 case "exit":
                     gameObj.exit();
                 default:
-                    //command = input.next();
+                    /*command = input.nextLine();*/
                     break;
             }
-        }while(!command.equals(""));
-        
+        }
+
         return;
 
     }
@@ -163,6 +165,7 @@ public class Nimsys {
 
     private void exit(){ //command list method
         System.out.println("Thank you for playing Nim");
+        isRunning = false;
       
     }
 
