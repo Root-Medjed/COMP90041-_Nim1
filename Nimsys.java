@@ -4,13 +4,14 @@ public class Nimsys {
 
     public static Scanner input = new Scanner(System.in); //scanner
     public static Nimsys gameObj = new Nimsys();//create main game object
-    public static int turnRound; // count rounds played
+    public static int turnRound = 1; // count rounds played
     private static String command = null; //take input into command line
 
     public static void main(String[] args) {  //this is the main method contains commands line console input
 
         System.out.print("Welcome to Nim\n");
-        System.out.print("Please enter a command to continue\n$ ");
+        System.out.println("\nPlease enter a command to continue ");
+        System.out.print("\n$ ");
         command = input.nextLine().toLowerCase();
 
         do{
@@ -43,7 +44,7 @@ public class Nimsys {
 
         String p1, p2;
 
-        while(command.equals("Y")){
+        do {
             System.out.print("Please enter Player 1's name : ");
 
             p1 = input.nextLine();
@@ -55,7 +56,7 @@ public class Nimsys {
 
             gameObj.newtGame(player_1, player_2); //done
             break;
-        }
+        }while(!command.equals("N"));
     }
 
     private void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new game.
@@ -63,33 +64,25 @@ public class Nimsys {
 
         do {
             String star = "* ";
-            //new NimPlayer(null,0,0,0);
-            currentPlayer = player_2;//object to handle who's turn，initialize to player_2
+
             System.out.print("Enter upper bound : ");
             int upperBound = input.nextInt();
             System.out.print("Enter initial number of stones : ");
             int totalStones = input.nextInt();
+            currentPlayer = player_1;//object to handle who's turn，initialize to player_1
 
             do {
-                if (currentPlayer.getName().equals(player_1.getName())) {
-                    currentPlayer = player_2;
-                } else if (currentPlayer.getName().equals(player_2.getName())) {
-                    currentPlayer = player_1;
-                }
-                turnRound++;
 
-                System.out.println(totalStones + " stones left : " + star.repeat(totalStones));
-                System.out.println(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
+                System.out.println("\n" + totalStones + " stones left : " + star.repeat(totalStones));
+                System.out.print(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
                 currentPlayer.setStones(input.nextInt());
-
-                currentPlayer.setNumOfGames(1);//count the turns
 
                 while (currentPlayer.removeStone() <= 0 || currentPlayer.removeStone() > upperBound) {
                     //this is the loop to determine whether a legal selection is provided.
 
                     System.out.println("Upper bound limit exceed, upper bound maximum choice is "
                             + upperBound);
-                    System.out.println(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
+                    System.out.print("\n" + currentPlayer.getName() + "'s turn. Enter stones to remove : ");
                     currentPlayer.setStones(input.nextInt());
                 }
 
@@ -97,26 +90,39 @@ public class Nimsys {
                     System.out.println("Invalid attempt, only " + totalStones + " stones remaining! Try again:");
                     currentPlayer.setStones(input.nextInt());
                 }
+
                 totalStones = totalStones - currentPlayer.removeStone();
+
+                if (currentPlayer.getName().equals(player_1.getName())) {
+                    currentPlayer = player_2;
+                }
+                else {
+                    currentPlayer = player_1;
+                }
+
+                turnRound++;  //count the turns
+
 
             } while (totalStones > 0);
 
-            currentPlayer.setNumOfGames(1);
-            System.out.println("Game Over"); //round ends
-            currentPlayer.setNumOfWins(0);
 
-            if (turnRound % 2 != 0) {
+            System.out.println("\nGame Over"); //round ends
+
+
+            if (turnRound % 2 == 0) {
                 currentPlayer = player_2;
-            } else {
+            }
+            else {
                 currentPlayer = player_1;
             }
+            currentPlayer.setNumOfWins(1);
+            currentPlayer.setNumOfGames(1);
 
             System.out.println(currentPlayer.getName() + " wins!\n");
 
-
         }while(input.nextLine().equals("Y"));
 
-        System.out.println("Do you want to play again (Y/N): ");
+        System.out.print("Do you want to play again (Y/N): ");
         String playOrNot = input.nextLine().toUpperCase();
 
         if (playOrNot.toUpperCase().equals("Y")) {
@@ -128,7 +134,9 @@ public class Nimsys {
             System.out.println(player_2.getName() + " won " + player_2.getWins() +" games out of " +
                     currentPlayer.getGamesCount() + " played");
 
-            gameObj.exit();
+            System.out.println("$ ");
+            System.out.print("$ ");
+            command = input.next();
         }
     }//end of new game
 
@@ -137,7 +145,7 @@ public class Nimsys {
         System.out.println("Type commands to list all available commands");
         System.out.println("Type start to play game");
         System.out.println("Player to remove the last stone loses!");
-        System.out.println("$ ");
+        System.out.print("\n$ ");
         command = input.next();
     }
 
@@ -151,7 +159,6 @@ public class Nimsys {
 
     private void exit(){ //command list method
         System.out.println("Thank you for playing Nim");
-        System.exit();
       
     }
 
