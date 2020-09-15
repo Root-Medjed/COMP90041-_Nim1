@@ -6,8 +6,8 @@ public class Nimsys {
 
     public static Scanner input = new Scanner(System.in); //scanner
     public static Nimsys gameObj = new Nimsys();//create main game object
-    public static NimPlayer p = new NimPlayer(); //an object to take the total number of games played.
-    public static int turnRound; // count how many rounds played in each round
+    public static NimPlayer p = new NimPlayer(); //an object to take the total number of games played
+    public static int turnRound; //count how many rounds played in each round
     private static String command = null; //take input into command line
 
 
@@ -62,7 +62,10 @@ public void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new ga
         do {
             String star = "* ";
             new NimPlayer();
-            NimPlayer currentPlayer = player_2;//object to handle who's turn，initialize to player_2
+            
+            //object to handle turns and initialize it to player_2
+           
+            NimPlayer currentPlayer = player_2;
             System.out.print("Enter upper bound : ");
             int upperBound = input.nextInt();
             System.out.print("Enter initial number of stones : ");
