@@ -1,126 +1,160 @@
 import java.util.*;
 
+import java.util.Scanner;
+
 public class Nimsys {
 
     public static Scanner input = new Scanner(System.in); //scanner
     public static Nimsys gameObj = new Nimsys();//create main game object
-    public static int ifContinue = 0;
-
-    private int upperBound = 0;
-    private int totalStones = 0;
-    private int totalRound = 0;
-    private NimPlayer player_1 = null;
-    private NimPlayer player_2 = null;
-    private String currentPlayer =null;
+    public static int round;
+    //public static int ifContinue = 0;//
+    static String command = null; //take input into command line
+    //private int totalRound = 0;
+    //private NimPlay player_1 = null;
+    //private NimPlay player_2 = null;
+    //private String currentPlayer =null;
 
 
     public static void main(String[] args) {
-
-        //Nimsys gameObj = new Nimsys();
-        String command; //take input into command line
 
         System.out.print("Welcome to Nim\n");
         System.out.print("Please enter a command to continue\n$ ");
         command = input.nextLine().toLowerCase();
 
-        while(ifContinue == 0) {
-            System.out.print("$ ");
-            if (command.toLowerCase().equals("start")) {
+        do{
+            System.out.print("\n$ ");
+
+            if ("start".equals(command.toLowerCase())) {
                 gameObj.startGame();
             }
-            else if (command.toLowerCase().equals("help")) {
+            else if ("help".equals(command.toLowerCase())) {
                 gameObj.help();
             }
-            else if (command.toLowerCase().equals("commands")) {
+            else if ("commands".equals(command.toLowerCase())) {
                 gameObj.commandList();
             }
-            else if(command.toLowerCase().equals("exit")){
-                gameObj.exit();
-            }
             else {
-                command = input.nextLine();
+                command = input.next();
             }
-        }
+        }while(!command.toLowerCase().equals("exit"));
+            gameObj.exit();
 
     }
-    public void startGame(){
-        player_1 = new NimPlayer();
-        player_2 = new NimPlayer();
 
-        System.out.print("Please enter Player 1's name : ");
-        player_1.setName(input.nextLine());//p1 enter name;
+    public void startGame(){
+
+        NimPlayer player_1 = new NimPlayer();
+        NimPlayer player_2 = new NimPlayer();
+
+        System.out.print("\nPlease enter Player 1's name : ");
+        player_1.setName(input.nextLine());//player_1 enter name;
 
         System.out.print("Please enter Player 2's name : ");
-        player_2.setName(input.nextLine());//p2 enter name;
+        player_2.setName(input.nextLine());//player_2 enter name;
 
-        gameObj.newtGame();
+        gameObj.newtGame(player_1, player_2); //done
 
     }
 
-    public void newtGame() {  //Start a new game.
+    public void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new game.
         String star = "* ";
-        currentPlayer = player_1.getName();
-        NimPlayer sn = new NimPlayer(); //object stone
+        NimPlayer currentPlayer = new NimPlayer(); //object to handle who's turn
+        currentPlayer = player_2;
+        String playAgain = null;
 
         System.out.print("Enter upper bound : ");
-        upperBound = input.nextInt();
+        int upperBound = input.nextInt();
         System.out.print("Enter initial number of stones : ");
-        totalStones = input.nextInt();
+        int totalStones = input.nextInt();
 
         while (totalStones > 0){
-            totalRound += 1;
-            System.out.println(totalStones + " stones left : " + star.repeat(totalStones));
-            System.out.println(currentPlayer + "'s turn. Enter stones to remove : ");
-            sn.setStones(input.nextInt());
 
-            while (sn.removeStone() <= 0 || sn.removeStone() >= 4) {
+            if (currentPlayer.getName().equals(player_1.getName())) {
+                currentPlayer = player_2;
+            } else if (currentPlayer.getName().equals(player_2.getName())){
+                currentPlayer = player_1;
+            }
+            round++;
+
+            System.out.println(totalStones + " stones left : " + star.repeat(totalStones));
+            System.out.println(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
+            currentPlayer.setStones(input.nextInt());
+
+            while (currentPlayer.removeStone() <= 0 || currentPlayer.removeStone() > upperBound) {
                 System.out.println("Upper bound limit exceed, upper bound maximum choice is "
                         + upperBound);
-                System.out.println(currentPlayer + "'s turn. Enter stones to remove : ");
-                sn.setStones(input.nextInt());
+                System.out.println(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
+                currentPlayer.setStones(input.nextInt());
             }
 
-            while (sn.removeStone() > totalStones){ //if stone number lager than remaining
-                System.out.println("Invalid attempt, only " +  totalStones + " stones remaining! Try again:" );
-                sn.setStones(input.nextInt());
+            while (currentPlayer.removeStone() > totalStones){ //if stone number lager than remaining
+                System.out.println("Invalid attempt, only " + totalStones + " stones remaining! Try again:" );
+                currentPlayer.setStones(input.nextInt());
             }
-            totalStones = totalStones - sn.removeStone();
+            totalStones = totalStones - currentPlayer.removeStone();
+            currentPlayer.setTotalRound(1);
 
         } System.out.println("Game Over");
-        totalRound -= 1;
-        System.out.println(currentPlayer + " wins!\n");
-        //.setNumOfWins(1);
+
+        if(round % 2 != 0){
+            currentPlayer = player_2;
+        }else {
+            currentPlayer = player_1;
+        }
+
+        System.out.println(currentPlayer.getName() + " wins!\n");
+        currentPlayer.setNumOfWins(1);
+
         System.out.println("Do you want to play again (Y/N): ");
-        String playAgain = input.nextLine().toUpperCase();
-        if(playAgain.equals("Y")){
-            gameObj.newtGame();
+
+        playAgain = input.nextLine().toUpperCase();
+
+        if(playAgain.toUpperCase().equals("Y")){
+            gameObj.newtGame(player_1, player_2);
         }else if(playAgain.toUpperCase().equals("N")){
+            gameObj.message(player_1, player_2);
             gameObj.exit();
         }
 
-
-        if (totalRound % 2 == 0) {
-            currentPlayer = player_2.getName();
-        } else if(totalRound % 2 != 0){
-            currentPlayer = player_1.getName();
-        }
     }
 
     private void help () {  //command list method
         System.out.println("Type commands to list all available commands");
         System.out.println("Type start to play game");
         System.out.println("Player to remove the last stone loses!");
-        }
+        System.out.println("$ ");
+        command = input.next();
+    }
 
     private void commandList(){ //command list method
 
-        System.out.println(": start\n" + ": exit\n" + ": help\n" + ": commands");
+        System.out.println("\n: start\n" + ": exit\n" + ": help\n" + ": commands");
+        System.out.print("\n$ ");
+        command = input.next();
 
     }
 
     private void exit(){ //command list method
         System.out.println("Thank you for playing Nim");
     }
+
+    private void message(NimPlayer player_1, NimPlayer player_2){
+        System.out.println(player_1.getName() + " won " + player_1.getWins() +"games out of" +
+                player_1.getGamesCount() + " played");
+        System.out.println(player_2.getName() + " won " + player_2.getWins() +"games out of" +
+                player_2.getGamesCount() + " played");
+    }
+
+
+
+    //private String turns(NimPlay player_1, NimPlay player_2, NimPlay currentPlayer){
+        //if (totalRound % 2 == 0) {
+            //currentPlayer = player_2;
+        //} else {
+            //currentPlayer = player_1;
+        //}
+
+    //}
 
 }
 
