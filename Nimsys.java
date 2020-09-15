@@ -4,8 +4,7 @@ public class Nimsys {
 
     public static Scanner input = new Scanner(System.in); //scanner
     public static Nimsys gameObj = new Nimsys();//create main game object
-    //public NimPlayer //p = new NimPlayer(null, 0,0,0); //an object to take the total number of games played.
-    public static int turnRound; // count how many rounds played in each round
+    public static int turnRound; // count rounds played
     private static String command = null; //take input into command line
 
     public static void main(String[] args) {  //this is the main method contains commands line console input
@@ -152,7 +151,8 @@ public class Nimsys {
 
     private void exit(){ //command list method
         System.out.println("Thank you for playing Nim");
-        return;
+        System.exit();
+      
     }
 
 } //end of Nimsys class
