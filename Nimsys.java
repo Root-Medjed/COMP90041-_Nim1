@@ -61,7 +61,8 @@ public class Nimsys {
 
     }
 
-    public void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new game.
+public void newtGame(NimPlayer player_1, NimPlayer player_2) {  //Start a new game.
+
         do {
             String star = "* ";
             new NimPlayer();
@@ -72,34 +73,38 @@ public class Nimsys {
             int totalStones = input.nextInt();
 
             do {
-                while (totalStones > 0) {
+                if (currentPlayer.getName().equals(player_1.getName())) {
+                    currentPlayer = player_2;
+                } else if (currentPlayer.getName().equals(player_2.getName())) {
+                    currentPlayer = player_1;
+                }
+                turnRound++;
 
-                    if (currentPlayer.getName().equals(player_1.getName())) {
-                        currentPlayer = player_2;
-                    } else if (currentPlayer.getName().equals(player_2.getName())) {
-                        currentPlayer = player_1;
-                    }
-                    turnRound++;
+                System.out.println(totalStones + " stones left : " + star.repeat(totalStones));
+                System.out.println(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
+                currentPlayer.setStones(input.nextInt());
 
-                    System.out.println(totalStones + " stones left : " + star.repeat(totalStones));
+                currentPlayer.setGamesCount(1);//count the turns
+
+                while (currentPlayer.removeStone() <= 0 || currentPlayer.removeStone() > upperBound) {
+                    //this is the loop to determine whether a legal selection is provided.
+
+                    System.out.println("Upper bound limit exceed, upper bound maximum choice is "
+                            + upperBound);
                     System.out.println(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
                     currentPlayer.setStones(input.nextInt());
+                }
 
-                    if (currentPlayer.removeStone() <= 0 || currentPlayer.removeStone() > upperBound) {
-                        System.out.println("Upper bound limit exceed, upper bound maximum choice is "
-                                + upperBound);
-                        System.out.println(currentPlayer.getName() + "'s turn. Enter stones to remove : ");
-                        currentPlayer.setStones(input.nextInt());
-                    } else if (currentPlayer.removeStone() > totalStones) { //if stone number lager than remaining
+                if (currentPlayer.removeStone() > totalStones) { //check if stone number lager than remaining
                         System.out.println("Invalid attempt, only " + totalStones + " stones remaining! Try again:");
                         currentPlayer.setStones(input.nextInt());
-                    }
-                    totalStones = totalStones - currentPlayer.removeStone();
-                    currentPlayer.setGamesCount(1);
-
                 }
-                System.out.println("Game Over"); //round ends
+                totalStones = totalStones - currentPlayer.removeStone();
+
             } while (totalStones > 0);
+
+            p.setNumOfGames(1);
+            System.out.println("Game Over"); //round ends
 
             if (turnRound % 2 != 0) {
                 currentPlayer = player_2;
@@ -118,7 +123,6 @@ public class Nimsys {
         if (playOrNot.toUpperCase().equals("Y")) {
             gameObj.newtGame(player_1, player_2);
         } else if (playOrNot.toUpperCase().equals("N")) {
-
             gameObj.message(player_1, player_2);
             gameObj.exit();
         }
