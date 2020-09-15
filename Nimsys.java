@@ -34,6 +34,8 @@ public class Nimsys {
                     break;
             }
         }while(!command.equals(""));
+        
+        return;
 
     }
 
