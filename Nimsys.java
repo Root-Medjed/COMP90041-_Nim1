@@ -6,13 +6,9 @@ public class Nimsys {
 
     public static Scanner input = new Scanner(System.in); //scanner
     public static Nimsys gameObj = new Nimsys();//create main game object
+    public static NimPlayer p = new NimPlayer(); //an object to take the total number of games played.
     public static int turnRound; // count how many rounds played in each round
-    static String command = null; //take input into command line
-
-    //private int totalRound = 0;
-    //private NimPlay player_1 = null;
-    //private NimPlay player_2 = null;
-    //private String currentPlayer =null;
+    private static String command = null; //take input into command line
 
 
     public static void main(String[] args) {
