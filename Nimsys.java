@@ -70,6 +70,7 @@ public class Nimsys {
         do{
             //String star = "* ";
             //gamePlayed++;  //count number of games played
+            NimPlayer cUrrentPlayer = new NimPlayer();
             NimPlayer currentPlayer = null;
 
             System.out.print("\nEnter upper bound : ");
@@ -131,9 +132,9 @@ public class Nimsys {
             player_2.setNumOfGames(player_2.getGamesCount() + 1);  //update 1
 
             System.out.print("Do you want to play again (Y/N): ");
-
-      } while (continuePlay.equals("N"));
-        continuePlay = input.nextLine().toUpperCase();
+            String continuePlay = input.nextLine().toUpperCase();
+      } while(continuePlay.equals("Y"));
+        
         System.out.println("\n" + player_1.getName() + " won " + player_1.getWins() +" games out of " +
                 player_1.getGamesCount() + " played");
         System.out.println(player_2.getName() + " won " + player_2.getWins() +" games out of " +
@@ -150,14 +151,14 @@ public class Nimsys {
         System.out.println("Type start to play game");
         System.out.println("Player to remove the last stone loses!");
         System.out.print("\n$ ");
-        command = input.nextLine();
+        String command = input.nextLine();
     }
 
     private void commandList(){ //command list method
 
         System.out.println("\n: start\r\n" + ": exit\r\n" + ": help\r\n" + ": commands");
         System.out.print("\n$ ");
-        command = input.nextLine();
+        String command = input.nextLine();
 
     }
 
