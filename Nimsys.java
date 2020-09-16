@@ -138,7 +138,7 @@ public class Nimsys {
                 player_2.getName(), player_2.getNumOfWins(),
                 win2 > 1?"s":"", player_2.getGameCount());
         System.out.println("\n$");
-        exit();
+        //exit();
     }
 
     //command methods:
