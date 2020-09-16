@@ -60,7 +60,7 @@ public class Nimsys {
 
             System.out.print("Enter upper bound : ");
             int upperBound = input.nextInt();  //set upperbound
-            System.out.print("Enter initial number of stones: ");
+            System.out.print("Enter initial number of stones : ");
             int totalStones = input.nextInt(); //initial number of stones
             turnRound = 0;
             NimPlayer currentPlayer = player_1;   //init current player as player1
@@ -75,7 +75,7 @@ public class Nimsys {
                 }
                 System.out.print("\n" + totalStones + " stones left :");
                 star(totalStones);
-                System.out.print("\n" + currentPlayer.getName() + "'s turn. Enter stones to remove: ");
+                System.out.print("\n" + currentPlayer.getName() + "'s turn. Enter stones to remove : ");
                 currentPlayer.setStones(input.nextInt());//bug fixed for previous version
                 int sn = currentPlayer.removeStone();
 
@@ -156,7 +156,7 @@ public class Nimsys {
     private void exit () {
         System.out.println("$");
         System.out.println("\nThank you for playing Nim\n");
-        isRunning = false;
+        //isRunning = false;
     }
 
     private void star ( int totalStones){
