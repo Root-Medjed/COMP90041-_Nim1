@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Nimsys {
@@ -41,7 +42,7 @@ public class Nimsys {
 
     public void startGame() {
 
-        System.out.print("Please enter Player 1's name : "); //player1 to input name
+        System.out.print("\nPlease enter Player 1's name : "); //player1 to input name
         String p1 = input.next();
         NimPlayer player_1 = new NimPlayer(p1, 0, 0, 0);
 
@@ -60,7 +61,7 @@ public class Nimsys {
 
             System.out.print("Enter upper bound : ");
             int upperBound = input.nextInt();  //set upperbound
-            System.out.print("Enter initial number of stones : ");
+            System.out.print("Enter initial number of stones :\t");
             int totalStones = input.nextInt(); //initial number of stones
             turnRound = 0;
             NimPlayer currentPlayer = player_1;   //init current player as player1
@@ -73,9 +74,9 @@ public class Nimsys {
                 } else {
                     currentPlayer = player_2;
                 }
-                System.out.print("\n\n" + totalStones + " stones left :");
+                System.out.print("\n" + totalStones + " stones left :");
                 star(totalStones);
-                System.out.print("\n" + currentPlayer.getName() + "'s turn. Enter stones to remove : ");
+                System.out.print("\n" + currentPlayer.getName() + "'s turn. Enter stones to remove :\t");
                 currentPlayer.setStones(input.nextInt());//bug fixed for previous version
                 int sn = currentPlayer.removeStone();
 
@@ -121,7 +122,7 @@ public class Nimsys {
                 isRunning = true;
             }else {
                 isRunning = false;
-                exit();
+                
             }
 
         }while(isRunning);
@@ -133,9 +134,10 @@ public class Nimsys {
                 player_1.getName(), player_1.getNumOfWins(),
                 win1 > 1?"s":"", player_1.getGameCount());
 
-        System.out.printf( "\n%s won %x game%s out of %x played",
+        System.out.printf( "\n%s won %x game%s out of %x played\n",
                 player_2.getName(), player_2.getNumOfWins(),
                 win2 > 1?"s":"", player_2.getGameCount());
+        exit();
     }
 
     private void commandList () {
@@ -153,7 +155,7 @@ public class Nimsys {
     }
 
     private void exit () {
-        System.out.println("\nThank you for playing Nim");
+        System.out.println("\nThank you for playing Nim\n");
         isRunning = false;
     }
 
