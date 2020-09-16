@@ -1,8 +1,8 @@
 public class NimPlayer {
     private String name;
-    private Integer stones; //the number of stones the player wants to remove in his/her turn.
-    private Integer wins; //how many wins;
-    private Integer gamesCount; //how many games played;
+    private int stones; //the number of stones the player wants to remove in his/her turn.
+    private int wins; //how many wins;
+    private int gamesCount; //how many games played;
 
     public NimPlayer(String name, int wins, int gamesCount, int stones){ //constructor & other
         this.name = name;
@@ -38,7 +38,7 @@ public class NimPlayer {
 
     public void setNumOfWins(int wins){ //set the number of wins
 
-        this.wins += wins;
+        this.wins = wins;
     }
 
     public int getWins(){
@@ -53,7 +53,8 @@ public class NimPlayer {
 
     public void setNumOfGames(int gamesCount) {
 
-        this.gamesCount += gamesCount;
+        this.gamesCount = gamesCount;
     }
 
 }
+
