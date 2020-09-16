@@ -114,7 +114,7 @@ public class Nimsys {
 
 
             String win;
-            if (currentPlayer.equals(player_1){
+            if (currentPlayer.equals(player_1)){
                 currentPlayer = player_2;
             }
             else{
