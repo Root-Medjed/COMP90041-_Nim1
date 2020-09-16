@@ -1,60 +1,51 @@
-public class NimPlayer {
-    private String name;
-    private int stones; //the number of stones the player wants to remove in his/her turn.
-    private int wins; //how many wins;
-    private int gamesCount; //how many games played;
+public class NimPlayer
+{
+    private String name;    //player's name
+    private int wins;     //how many wins
+    private int gamePlayed;    //how many games
+    private int stones; //set the num of stone player wants to move each turn
 
-    public NimPlayer(String name, int wins, int gamesCount, int stones){ //constructor & other
+    //public NimPlayer()
+
+    public NimPlayer(String name, int wins, int gamePlayed, int stones){
         this.name = name;
-        this.stones = stones;
         this.wins = wins;
-        this.gamesCount = gamesCount;
+        this.gamePlayed = gamePlayed;
+        this.stones = stones;
+
     }
 
-    //public NimPlayer(){
-        //this.name = null;
-        //this.stones = 0;
-        //this.wins = 0;
-    //}
-
-    public void setName(String name){
-
-        this.name = name;
-    }
-
-    public String getName(){
-
+    public String getName() {
         return name;
     }
 
-    public void setStones(int stones){
-
-        this.stones = stones;  //num came from the input
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int removeStone(){ //get stone
-        return stones;
-    }
-
-    public void setNumOfWins(int wins){ //set the number of wins
-
-        this.wins = wins;
-    }
-
-    public int getWins(){
-
+    public int getNumOfWins() {//getters to get the number of wins
         return wins;
     }
 
-    public int getGamesCount(){
-
-        return gamesCount;
+    public void setNumOfWins(int wins) { //count wins
+        this.wins = wins;
     }
 
-    public void setNumOfGames(int gamesCount) {
+    public int getGameCount() {
+        return gamePlayed;
+    }
 
-        this.gamesCount = gamesCount;
+    public void setGameCount(int gamePlayed) {
+        this.gamePlayed = gamePlayed;
+    }
+
+
+    public int removeStone() {  //getters to get player inputs - stone to remove
+        return stones;
+    }
+
+    public void setStones(int stones){  //setters to set the stone to remove each turn
+        this.stones = stones;
     }
 
 }
-
