@@ -134,7 +134,7 @@ public class Nimsys {
                 player_1.getName(), player_1.getNumOfWins(),
                 win1 > 1?"s":"", player_1.getGameCount());
 
-        System.out.printf( "\n%s won %x game%s out of %x played",
+        System.out.printf( "\n%s won %x game%s out of %x played\n",
                 player_2.getName(), player_2.getNumOfWins(),
                 win2 > 1?"s":"", player_2.getGameCount());
         //System.out.println("\n$");
@@ -158,7 +158,7 @@ public class Nimsys {
 
     private void exit () {
         //System.out.println("$");
-        System.out.println("\nThank you for playing Nim\t");
+        System.out.println("\nThank you for playing Nim\n");
         isRunning = false;
 
     }
