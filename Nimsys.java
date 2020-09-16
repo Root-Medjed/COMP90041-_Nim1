@@ -114,22 +114,15 @@ public class Nimsys {
 
 
             String win;
-            if (currentPlayer.equals(player_1) {
+            if (currentPlayer.equals(player_1){
                 currentPlayer = player_2;
             }
-            else {
+            else{
                 currentPlayer = player_1;
             }
 
-            /*if (turnRound % 2 == 0) {
-                win = p2;
-
-                }
-                else {
-                    win = p1;
-
-                }*/
-            currentPlayer.setNumOfWins(currentPlayer.getWins()+1));
+           
+            currentPlayer.setNumOfWins(currentPlayer.getWins()+1);
 
             System.out.println("\nGame Over"); //round ends
             System.out.println(currentPlayer.getName() + " wins!\n");
