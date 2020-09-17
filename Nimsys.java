@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Nimsys {
@@ -64,14 +66,11 @@ public class Nimsys {
             System.out.print("Enter initial number of stones : ");
             int totalStones = input.nextInt(); //initial number of stones
             turnRound = 0;
-            NimPlayer currentPlayer = player_1;
-
-            /*init current player as player1, player1 always
-            moves first*/
+            NimPlayer currentPlayer = player_1;       //set current player as player1, player1 always moves first
 
 
-            do {  //this do-while loop runs when total stones > 0;
-                if (turnRound % 2 == 0) {   //determine player's turn
+            do {                                     //this do-while loop runs when total stones > 0;
+                if (turnRound % 2 == 0) {            //determine player's turn
                     currentPlayer = player_1;
                 } else {
                     currentPlayer = player_2;
@@ -90,7 +89,8 @@ public class Nimsys {
                 }  //check the whether the input from player is legal
 
                 while (currentPlayer.removeStone() > totalStones) {
-                    System.out.print("Invalid attempt, only " + totalStones + " stones remaining! Try again: ");
+                    System.out.print("Invalid attempt, only " + totalStones + 
+                                     " stones remaining! Try again: ");
                     currentPlayer.setStones(input.nextInt());
                 } //check the whether the input from player is legal
 
@@ -99,31 +99,10 @@ public class Nimsys {
                 turnRound++; //count the round
 
             }while (totalStones > 0);
+            checkWinner(totalStones, currentPlayer, player_1, player_2);
 
-                if (totalStones == 0) {
-                    System.out.println("\nGame Over");  //round ends, check the winner
-                    if (currentPlayer.equals(player_1)) {
-                        currentPlayer = player_2;
-                    } else {
-                        currentPlayer = player_1;
-                    }
-                    System.out.println(currentPlayer.getName() + " wins!");
-                    currentPlayer.setNumOfWins(currentPlayer.getNumOfWins() + 1);
-
-                    gameCount++;
-
-                    player_1.setGameCount(gameCount);
-                    player_2.setGameCount(gameCount);
-               }
             System.out.print("\nDo you want to play again (Y/N): ");
-            input.nextLine().toUpperCase();
-
-            if (input.nextLine().toUpperCase().equals("Y")) { //this is to switch the game status
-                isRunning = true;
-            }else {
-                isRunning = false;
-
-            }
+            playAgain();
 
         }while(isRunning);
 
@@ -137,15 +116,50 @@ public class Nimsys {
         System.out.printf( "\n%s won %x game%s out of %x played\n",
                 player_2.getName(), player_2.getNumOfWins(),
                 win2 > 1?"s":"", player_2.getGameCount());
-        //System.out.println("\n$");
-        //exit();
+       
+    }
+
+    private boolean playAgain(){  //this method is to switch the player
+        input.nextLine().toUpperCase();
+
+        if (input.nextLine().toUpperCase().equals("Y")) { //this is to switch the game status
+            return isRunning = true;
+        }else {
+            return isRunning = false;
+        }
+    }
+
+    private void checkWinner(int totalStones, NimPlayer currentPlayer,   //this is the method to check who is the winner after each game
+                             NimPlayer player_1, NimPlayer player_2){
+        if (totalStones == 0){
+            System.out.println("\nGame Over");  //round ends, check the winner
+            if (currentPlayer.equals(player_1)) {
+            currentPlayer = player_2;
+            } else {
+            currentPlayer = player_1;
+            }
+            System.out.println(currentPlayer.getName() + " wins!");
+            currentPlayer.setNumOfWins(currentPlayer.getNumOfWins() + 1);
+            gameCount++;
+            player_1.setGameCount(gameCount);
+            player_2.setGameCount(gameCount);
+        }
     }
 
     //command methods:
 
-    private void commandList () {
-        System.out.println("\n: start\r\n" +
-                    ": exit\r\n" + ": help\r\n" + ": commands");
+    private void commandList () {    // ArrayList is used to store all the commands, can be add more later
+        List<String> listCommand = new ArrayList();
+        listCommand.add("start");
+        listCommand.add("exit");
+        listCommand.add("help");
+        listCommand.add("commands");
+        System.out.println(" ");
+
+        for (int i = 0; i < listCommand.size(); i++) {
+            System.out.println(listCommand.get(i));
+        }
+        System.out.println(" ");
     }
 
     private void help () {
