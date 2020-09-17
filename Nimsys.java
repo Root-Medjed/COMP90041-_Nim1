@@ -149,7 +149,7 @@ public class Nimsys {
     //command methods:
 
     private void commandList () {    // ArrayList is used to store all the commands, can be add more later
-        List<String> listCommand = new ArrayList();
+        List<String> listCommand = new ArrayList<String>();
         listCommand.add("start");
         listCommand.add("exit");
         listCommand.add("help");
