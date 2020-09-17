@@ -105,17 +105,8 @@ public class Nimsys {
             playAgain();
 
         }while(isRunning);
-
-        int win1 = player_1.getNumOfWins();
-        int win2 = player_2.getNumOfWins();
-
-        System.out.printf( "%s won %x game%s out of %x played",
-                player_1.getName(), player_1.getNumOfWins(),
-                win1 > 1?"s":"", player_1.getGameCount());
-
-        System.out.printf( "\n%s won %x game%s out of %x played\n",
-                player_2.getName(), player_2.getNumOfWins(),
-                win2 > 1?"s":"", player_2.getGameCount());
+        
+        message(player_1, player_2);
        
     }
 
@@ -144,6 +135,20 @@ public class Nimsys {
             player_1.setGameCount(gameCount);
             player_2.setGameCount(gameCount);
         }
+    }
+    
+    public void message(NimPlayer player_1, NimPlayer player_2){
+        int win1 = player_1.getNumOfWins();
+        int win2 = player_2.getNumOfWins();
+
+        System.out.printf( "%s won %x game%s out of %x played",
+                player_1.getName(), player_1.getNumOfWins(),
+                win1 > 1?"s":"", player_1.getGameCount());
+
+        System.out.printf( "\n%s won %x game%s out of %x played\n",
+                player_2.getName(), player_2.getNumOfWins(),
+                win2 > 1?"s":"", player_2.getGameCount());
+    
     }
 
     //command methods:
